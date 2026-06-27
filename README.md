@@ -277,11 +277,11 @@ Mostrar únicamente los bloques completos de código.
 
 Agente 1 — Codex (`landing1.html`)
 
-[Landing generada por Codex](./screenshots/landing1-hero.png)
+![Landing generada por Codex](./landing1-hero.png)
 
 Agente 2 — Cursor (`landing2.html`)
 
-![Landing generada por Cursor](./screenshots/landing2-hero.png)
+![Landing generada por Cursor](./landing2-hero.png)
 
 Tecnologías
 

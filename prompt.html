@@ -163,9 +163,8 @@
       padding: 1.75rem 1.5rem;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.85rem;
-      line-height: 1.85;
+      line-height: 1.5;
       color: #cbd5e1;
-      white-space: pre-wrap;
       word-break: break-word;
     }
 
@@ -174,6 +173,38 @@
       color: var(--gold);
       font-weight: 500;
     }
+
+    .prompt-section-title {
+      display: block;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--blue);
+      margin: 1.1rem 0 0.35rem;
+    }
+    .prompt-body > .prompt-section-title:first-child { margin-top: 0; }
+
+    .prompt-subtitle {
+      display: block;
+      font-weight: 700;
+      color: #fff;
+      margin: 0.6rem 0 0.15rem;
+    }
+
+    .prompt-body ul {
+      margin: 0.2rem 0 0.4rem 1.2rem;
+      padding: 0;
+      list-style: disc;
+    }
+    .prompt-body ul li { margin-bottom: 0.05rem; }
+    .prompt-body ol {
+      margin: 0.2rem 0 0.4rem 1.2rem;
+      padding: 0;
+    }
+    .prompt-body ol li { margin-bottom: 0.1rem; }
+    .prompt-body p { margin-bottom: 0.3rem; }
 
     /* Models section */
     .models {
@@ -263,29 +294,133 @@
         </button>
       </div>
 
-      <div class="prompt-body" id="prompt-text">Eres un experto en diseño web y desarrollo frontend. Crea una landing page completa y moderna en HTML, CSS y JavaScript para una plataforma educativa llamada <strong>"Pinyin Start"</strong> que enseña chino mandarín desde cero a hispanohablantes.
+      <div class="prompt-body" id="prompt-text">
+        <p>Actúa como un <strong>Diseñador UI/UX Senior</strong>, Especialista en Experiencia de Usuario Educativa (EdTech) y <strong>Desarrollador Front-End Senior</strong>. Eres experto en HTML5, CSS3, JavaScript Vanilla y Tailwind CSS. Tu objetivo es generar una landing page moderna, profesional, completamente funcional y visualmente impactante para una plataforma de aprendizaje de chino mandarín para principiantes llamada <strong>"Pinyin Start"</strong>.</p>
 
-La página debe incluir:
+        <span class="prompt-section-title">Contexto del Proyecto</span>
+        <p>Pinyin Start es una plataforma educativa diseñada para personas que desean aprender chino mandarín desde cero.</p>
+        <p>El sitio debe transmitir innovación, tecnología, aprendizaje interactivo y simplicidad.</p>
+        <p>La experiencia visual debe inspirarse en plataformas modernas como Duolingo, Notion, Stripe, Linear y Coursera, utilizando un diseño elegante, minimalista y altamente profesional.</p>
 
-<strong>1. Header fijo</strong> con logo (carácter 拼), navegación con links a las secciones (#inicio, #pinyin, #caracteres, #pronunciacion, #contacto) y un botón CTA "Comenzar Gratis".
+        <span class="prompt-section-title">Tecnologías Obligatorias</span>
+        <p>Utiliza exclusivamente:</p>
+        <ul>
+          <li>HTML5</li>
+          <li>CSS3</li>
+          <li>JavaScript Vanilla</li>
+          <li>Tailwind CSS vía CDN</li>
+        </ul>
+        <p>No utilices frameworks adicionales. Todo debe funcionar simplemente abriendo los archivos en un navegador.</p>
 
-<strong>2. Sección Hero</strong> con: título principal "Aprende chino mandarín desde cero", subtítulo descriptivo, dos botones (primario y secundario), estadísticas (12.000 estudiantes, 200+ lecciones, 100% gratuito), y una ilustración visual con caracteres chinos flotantes animados.
+        <span class="prompt-section-title">Regla de Oro</span>
+        <p>Debes generar el código 100% completo. No debes escribir comentarios como:</p>
+        <ul>
+          <li>"continúa aquí"</li>
+          <li>"agrega más contenido"</li>
+          <li>"código omitido"</li>
+          <li>"resto del código"</li>
+        </ul>
+        <p>Todo debe estar completamente desarrollado.</p>
 
-<strong>3. Sección Sobre Nosotros</strong> con texto descriptivo de la plataforma y una grilla de 5 tarjetas de características (aprendizaje desde cero, método visual, pronunciación correcta, caracteres básicos, ejercicios prácticos).
+        <span class="prompt-section-title">Estilo Visual</span>
+        <span class="prompt-subtitle">Paleta</span>
+        <ul>
+          <li>Fondo principal oscuro elegante</li>
+          <li>Tonos azul profundo</li>
+          <li>Acentos rojo chino</li>
+          <li>Acentos dorados sutiles</li>
+          <li>Contrastes modernos</li>
+        </ul>
+        <span class="prompt-subtitle">Diseño</span>
+        <ul>
+          <li>Glassmorphism</li>
+          <li>Gradientes suaves</li>
+          <li>Sombras modernas</li>
+          <li>Animaciones delicadas</li>
+          <li>Diseño responsive Mobile First</li>
+          <li>Bordes redondeados</li>
+          <li>Efectos hover profesionales</li>
+        </ul>
+        <span class="prompt-subtitle">Tipografía</span>
+        <p>Utiliza Google Fonts modernas. Preferentemente:</p>
+        <ul>
+          <li>Poppins</li>
+          <li>Inter</li>
+          <li>Plus Jakarta Sans</li>
+        </ul>
 
-<strong>4. Sección Características/Pinyin</strong> con 6 tarjetas de features: Pinyin, Tonos, Pronunciación, Caracteres chinos, Vocabulario básico, Conversaciones cotidianas.
+        <span class="prompt-section-title">Estructura Obligatoria</span>
 
-<strong>5. Sección Interactiva</strong> con:
-   - Widget de pronunciación: botones con caracteres 你好, 谢谢, 再见 que al hacer clic muestran pinyin y traducción.
-   - Flashcards 3D con flip animation: mínimo 6 tarjetas con caracteres chinos, al clickear muestran pinyin y traducción.
+        <span class="prompt-subtitle">1. Header</span>
+        <p>Debe incluir:</p>
+        <ul>
+          <li>Logo "Pinyin Start"</li>
+          <li>Menú de navegación: Inicio, Pinyin, Caracteres, Pronunciación, Contacto</li>
+        </ul>
+        <p>Botón CTA: "Comenzar Gratis". Header fijo con efecto blur.</p>
 
-<strong>6. Sección Testimonios</strong> en formato bento grid con 3 testimonios de estudiantes y una estadística destacada (98% satisfacción).
+        <span class="prompt-subtitle">2. Hero Section</span>
+        <p>Título principal impactante: "Aprende chino mandarín desde cero". Subtítulo explicativo. Botón CTA principal. Botón secundario.</p>
+        <p>En el lado derecho crear una ilustración tecnológica utilizando únicamente HTML y CSS. NO utilizar imágenes cuadradas simples. Utilizar:</p>
+        <ul>
+          <li>Tarjetas flotantes</li>
+          <li>Caracteres chinos</li>
+          <li>Elementos visuales modernos</li>
+          <li>Efectos glow</li>
+        </ul>
 
-<strong>7. Sección Contacto</strong> con información de contacto y formulario con campos: nombre, email, nivel actual (select) y mensaje. Validación y mensaje de éxito al enviar.
+        <span class="prompt-subtitle">3. Sobre Nosotros</span>
+        <p>Explicar qué es Pinyin Start. Destacar:</p>
+        <ul>
+          <li>Aprendizaje desde cero</li>
+          <li>Método visual</li>
+          <li>Pronunciación correcta</li>
+          <li>Caracteres básicos</li>
+          <li>Ejercicios prácticos</li>
+        </ul>
 
-<strong>8. Footer</strong> con logo, descripción, redes sociales, y columnas de links (Recursos, Cursos, Legal).
+        <span class="prompt-subtitle">4. Características Principales</span>
+        <p>Diseñar un grid responsive de tarjetas:</p>
+        <ol>
+          <li>Pinyin</li>
+          <li>Tonos</li>
+          <li>Pronunciación</li>
+          <li>Caracteres chinos</li>
+          <li>Vocabulario básico</li>
+          <li>Conversaciones cotidianas</li>
+        </ol>
+        <p>Cada tarjeta debe tener: ícono, título, descripción y efectos hover modernos.</p>
 
-<strong>Diseño visual:</strong> Paleta oscura (fondo #070b14), rojo chino (#e63946), dorado (#d4a853), azul (#3b82f6). Tipografía: Inter + Plus Jakarta Sans. Glassmorphism en tarjetas. Animaciones suaves de entrada (fade-up con IntersectionObserver). Totalmente responsive (mobile-first). Menú hamburguesa funcional en mobile.</div>
+        <span class="prompt-subtitle">5. Sección Interactiva</span>
+        <p>Implementar con JavaScript Vanilla.</p>
+        <p><strong>Widget de Pronunciación</strong> — Mostrar ejemplos: 你好, 谢谢, 再见. Al hacer clic en cada palabra debe mostrarse carácter, pinyin y traducción, mediante JavaScript.</p>
+        <p><strong>Flashcards</strong> — Crear tarjetas interactivas que se giren al hacer clic. Ejemplo — Frente: 你好 / Atrás: Nǐ hǎo, Hola. Implementar animación de giro.</p>
+
+        <span class="prompt-subtitle">6. Testimonios</span>
+        <p>Mostrar tres estudiantes ficticios. Cada tarjeta debe contener: avatar circular, nombre, comentario y calificación visual de 5 estrellas. Diseño tipo Bento Grid moderno.</p>
+
+        <span class="prompt-subtitle">7. Formulario de Contacto</span>
+        <p>Campos: Nombre, Correo electrónico, Nivel actual, Mensaje. Validaciones HTML5 obligatorias. Diseño moderno en modo oscuro.</p>
+
+        <span class="prompt-subtitle">8. Footer</span>
+        <p>Incluir: redes sociales, recursos (Curso de Pinyin, Curso de Caracteres, Curso de Pronunciación). Además: © Pinyin Start 2026.</p>
+
+        <span class="prompt-section-title">Requisitos Responsivos</span>
+        <p>Debe visualizarse correctamente en: móviles, tablets, notebooks y monitores grandes.</p>
+
+        <span class="prompt-section-title">Calidad Visual Esperada</span>
+        <p>La landing debe parecer un producto real listo para producción. Debe verse claramente superior a una landing académica básica. Priorizar:</p>
+        <ul>
+          <li>Estética moderna</li>
+          <li>Animaciones suaves</li>
+          <li>Experiencia de usuario</li>
+          <li>Legibilidad</li>
+          <li>Profesionalismo</li>
+        </ul>
+
+        <span class="prompt-section-title">Formato de Entrega</span>
+        <p>No explicar el código. No resumir. Mostrar únicamente los bloques completos de código.</p>
+      </div>
     </div>
 
     <div class="models">
@@ -307,29 +442,252 @@ La página debe incluir:
 
   <script>
     function copyPrompt(btn) {
-      const raw = `Eres un experto en diseño web y desarrollo frontend. Crea una landing page completa y moderna en HTML, CSS y JavaScript para una plataforma educativa llamada "Pinyin Start" que enseña chino mandarín desde cero a hispanohablantes.
+      const raw = `Actúa como un Diseñador UI/UX Senior, Especialista en Experiencia de Usuario Educativa (EdTech) y Desarrollador Front-End Senior. Eres experto en HTML5, CSS3, JavaScript Vanilla y Tailwind CSS. Tu objetivo es generar una landing page moderna, profesional, completamente funcional y visualmente impactante para una plataforma de aprendizaje de chino mandarín para principiantes llamada "Pinyin Start".
 
-La página debe incluir:
+Contexto del Proyecto
 
-1. Header fijo con logo (carácter 拼), navegación con links a las secciones (#inicio, #pinyin, #caracteres, #pronunciacion, #contacto) y un botón CTA "Comenzar Gratis".
+Pinyin Start es una plataforma educativa diseñada para personas que desean aprender chino mandarín desde cero.
 
-2. Sección Hero con: título principal "Aprende chino mandarín desde cero", subtítulo descriptivo, dos botones (primario y secundario), estadísticas (12.000 estudiantes, 200+ lecciones, 100% gratuito), y una ilustración visual con caracteres chinos flotantes animados.
+El sitio debe transmitir innovación, tecnología, aprendizaje interactivo y simplicidad.
 
-3. Sección Sobre Nosotros con texto descriptivo de la plataforma y una grilla de 5 tarjetas de características (aprendizaje desde cero, método visual, pronunciación correcta, caracteres básicos, ejercicios prácticos).
+La experiencia visual debe inspirarse en plataformas modernas como Duolingo, Notion, Stripe, Linear y Coursera, utilizando un diseño elegante, minimalista y altamente profesional.
 
-4. Sección Características/Pinyin con 6 tarjetas de features: Pinyin, Tonos, Pronunciación, Caracteres chinos, Vocabulario básico, Conversaciones cotidianas.
+Tecnologías Obligatorias
 
-5. Sección Interactiva con:
-   - Widget de pronunciación: botones con caracteres 你好, 谢谢, 再见 que al hacer clic muestran pinyin y traducción.
-   - Flashcards 3D con flip animation: mínimo 6 tarjetas con caracteres chinos, al clickear muestran pinyin y traducción.
+Utiliza exclusivamente:
 
-6. Sección Testimonios en formato bento grid con 3 testimonios de estudiantes y una estadística destacada (98% satisfacción).
+* HTML5
+* CSS3
+* JavaScript Vanilla
+* Tailwind CSS vía CDN
 
-7. Sección Contacto con información de contacto y formulario con campos: nombre, email, nivel actual (select) y mensaje. Validación y mensaje de éxito al enviar.
+No utilices frameworks adicionales.
 
-8. Footer con logo, descripción, redes sociales, y columnas de links (Recursos, Cursos, Legal).
+Todo debe funcionar simplemente abriendo los archivos en un navegador.
 
-Diseño visual: Paleta oscura (fondo #070b14), rojo chino (#e63946), dorado (#d4a853), azul (#3b82f6). Tipografía: Inter + Plus Jakarta Sans. Glassmorphism en tarjetas. Animaciones suaves de entrada (fade-up con IntersectionObserver). Totalmente responsive (mobile-first). Menú hamburguesa funcional en mobile.`;
+REGLA DE ORO
+
+Debes generar el código 100% completo.
+
+No debes escribir comentarios como:
+
+"continúa aquí"
+"agrega más contenido"
+"código omitido"
+"resto del código"
+
+Todo debe estar completamente desarrollado.
+
+Estilo Visual
+
+Paleta
+
+* Fondo principal oscuro elegante
+* Tonos azul profundo
+* Acentos rojo chino
+* Acentos dorados sutiles
+* Contrastes modernos
+
+Diseño
+
+* Glassmorphism
+* Gradientes suaves
+* Sombras modernas
+* Animaciones delicadas
+* Diseño responsive Mobile First
+* Bordes redondeados
+* Efectos hover profesionales
+
+Tipografía
+
+Utiliza Google Fonts modernas.
+
+Preferentemente:
+
+* Poppins
+* Inter
+* Plus Jakarta Sans
+
+Estructura Obligatoria
+
+1. Header
+
+Debe incluir:
+
+* Logo "Pinyin Start"
+* Menú de navegación
+* Inicio
+* Pinyin
+* Caracteres
+* Pronunciación
+* Contacto
+
+Botón CTA:
+
+"Comenzar Gratis"
+
+Header fijo con efecto blur.
+
+2. Hero Section
+
+Título principal impactante:
+
+"Aprende chino mandarín desde cero"
+
+Subtítulo explicativo.
+
+Botón CTA principal.
+
+Botón secundario.
+
+En el lado derecho crear una ilustración tecnológica utilizando únicamente HTML y CSS.
+
+NO utilizar imágenes cuadradas simples.
+
+Utilizar:
+
+* Tarjetas flotantes
+* Caracteres chinos
+* Elementos visuales modernos
+* Efectos glow
+
+3. Sobre Nosotros
+
+Explicar qué es Pinyin Start.
+
+Destacar:
+
+* Aprendizaje desde cero
+* Método visual
+* Pronunciación correcta
+* Caracteres básicos
+* Ejercicios prácticos
+
+4. Características Principales
+
+Diseñar un grid responsive de tarjetas.
+
+Tarjetas:
+
+   a. Pinyin
+   b. Tonos
+   c. Pronunciación
+   d. Caracteres chinos
+   e. Vocabulario básico
+   f. Conversaciones cotidianas
+
+Cada tarjeta debe tener:
+
+* Ícono
+* Título
+* Descripción
+* Efectos hover modernos
+
+5. Sección Interactiva
+
+Implementar con JavaScript Vanilla.
+
+Widget de Pronunciación
+
+Mostrar ejemplos:
+
+* 你好
+* 谢谢
+* 再见
+
+Al hacer clic en cada palabra debe mostrarse:
+
+* Caracter
+* Pinyin
+* Traducción
+
+mediante JavaScript.
+
+Flashcards
+
+Crear tarjetas interactivas que se giren al hacer clic.
+
+Ejemplos:
+
+Frente:
+你好
+
+Atrás:
+Nǐ hǎo
+Hola
+
+Implementar animación de giro.
+
+6. Testimonios
+
+Mostrar tres estudiantes ficticios.
+
+Cada tarjeta debe contener:
+
+* Avatar circular
+* Nombre
+* Comentario
+* Calificación visual de 5 estrellas
+
+Diseño tipo Bento Grid moderno.
+
+7. Formulario de Contacto
+
+Campos:
+
+* Nombre
+* Correo electrónico
+* Nivel actual
+* Mensaje
+
+Validaciones HTML5 obligatorias.
+
+Diseño moderno en modo oscuro.
+
+8. Footer
+
+Incluir:
+
+* Redes sociales
+* Recursos
+* Curso de Pinyin
+* Curso de Caracteres
+* Curso de Pronunciación
+
+Además:
+
+© Pinyin Start 2026
+
+Requisitos Responsivos
+
+Debe visualizarse correctamente en:
+
+* Móviles
+* Tablets
+* Notebooks
+* Monitores grandes
+
+Calidad Visual Esperada
+
+La landing debe parecer un producto real listo para producción.
+
+Debe verse claramente superior a una landing académica básica.
+
+Priorizar:
+
+* Estética moderna
+* Animaciones suaves
+* Experiencia de usuario
+* Legibilidad
+* Profesionalismo
+
+Formato de Entrega
+
+No explicar el código.
+
+No resumir.
+
+Mostrar únicamente los bloques completos de código.`;
 
       navigator.clipboard.writeText(raw).then(() => {
         const span = btn.querySelector('span');
