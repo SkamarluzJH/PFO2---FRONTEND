@@ -14,7 +14,7 @@ Comparativa de landing pages generadas por dos agentes de IA distintos (Codex y 
 
 ## 🔗 Link al deploy unificado
 
-Deploy en Vercel: [https://TU-PROYECTO.vercel.app](https://TU-PROYECTO.vercel.app)
+Deploy en Vercel:(https://pfo-2-frontend-iota.vercel.app/)
 
 Ese enlace dirige a `portada.html`, que centraliza el acceso a las tres vistas:
 
