@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PFO2 — Interfaz de Acceso al Proyecto de Chino Nivel 1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --midnight: #070b14;
+      --deepblue: #0f1729;
+      --red: #e63946;
+      --gold: #d4a853;
+      --blue: #3b82f6;
+      --slate: #94a3b8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: linear-gradient(160deg, #070b14 0%, #0a1020 60%, #070b14 100%);
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      color: #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    /* Ambient glow blobs */
+    .glow-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .glow-bg span {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.12;
+    }
+    .glow-bg span:nth-child(1) { width: 500px; height: 500px; background: var(--blue); top: -100px; left: -100px; }
+    .glow-bg span:nth-child(2) { width: 400px; height: 400px; background: var(--red); bottom: -80px; right: -80px; }
+    .glow-bg span:nth-child(3) { width: 300px; height: 300px; background: var(--gold); top: 50%; left: 50%; transform: translate(-50%,-50%); }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 760px;
+    }
+
+    /* Header */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+    }
+    .logo-mark {
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, var(--red) 0%, var(--blue) 100%);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(230,57,70,0.3);
+    }
+    .logo-text {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #fff;
+    }
+    .logo-text span { color: var(--gold); }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      background: rgba(212,168,83,0.1);
+      border: 1px solid rgba(212,168,83,0.25);
+      border-radius: 9999px;
+      padding: 0.3rem 0.9rem;
+      margin-bottom: 1.75rem;
+    }
+
+    h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800;
+      line-height: 1.2;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 0.75rem;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--gold) 50%, var(--red) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .subtitle {
+      text-align: center;
+      color: var(--slate);
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* Cards */
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: rgba(15, 23, 41, 0.65);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 1.25rem;
+      padding: 1.5rem 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,255,255,0.14);
+    }
+    .card::after {
+      content: '→';
+      position: absolute;
+      right: 1.75rem;
+      font-size: 1.2rem;
+      opacity: 0;
+      transform: translateX(-6px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      color: #fff;
+    }
+    .card:hover::after {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .card-1:hover { box-shadow: 0 16px 40px rgba(59,130,246,0.18); border-color: rgba(59,130,246,0.3); }
+    .card-2:hover { box-shadow: 0 16px 40px rgba(230,57,70,0.18); border-color: rgba(230,57,70,0.3); }
+    .card-3:hover { box-shadow: 0 16px 40px rgba(212,168,83,0.18); border-color: rgba(212,168,83,0.3); }
+
+    .card-num {
+      width: 3rem; height: 3rem;
+      border-radius: 0.875rem;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .num-blue  { background: linear-gradient(135deg, rgba(59,130,246,0.3), rgba(99,102,241,0.3)); border: 1px solid rgba(59,130,246,0.4); }
+    .num-red   { background: linear-gradient(135deg, rgba(230,57,70,0.3), rgba(239,68,68,0.3));   border: 1px solid rgba(230,57,70,0.4); }
+    .num-gold  { background: linear-gradient(135deg, rgba(212,168,83,0.3), rgba(234,179,8,0.3));  border: 1px solid rgba(212,168,83,0.4); }
+
+    .card-body { flex: 1; min-width: 0; }
+    .card-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.3rem;
+    }
+    .lbl-blue { color: var(--blue); }
+    .lbl-red  { color: var(--red); }
+    .lbl-gold { color: var(--gold); }
+
+    .card-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.25rem;
+    }
+    .card-desc {
+      font-size: 0.82rem;
+      color: var(--slate);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2.5rem 0 1.25rem;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.07);
+    }
+    .divider span {
+      font-size: 0.75rem;
+      color: rgba(148,163,184,0.5);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Prompt box */
+    .prompt-box {
+      background: rgba(7, 11, 20, 0.7);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+    }
+    .prompt-box h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .prompt-box h2::before {
+      content: '';
+      display: inline-block;
+      width: 3px;
+      height: 14px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+    .prompt-text {
+      font-size: 0.875rem;
+      line-height: 1.7;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      font-family: 'Inter', monospace;
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 1;
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(100,116,139,0.7);
+    }
+
+    @media (max-width: 520px) {
+      .card::after { display: none; }
+      .card { padding: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow-bg">
+    <span></span><span></span><span></span>
+  </div>
+
+  <div class="container">
+
+    <!-- Encabezado -->
+    <div style="text-align:center; margin-bottom: 0.5rem;">
+      <div class="logo">
+        <div class="logo-mark">拼</div>
+        <div class="logo-text">Pinyin <span>Start</span></div>
+      </div>
+      <div class="badge">PFO2 · Agentes de IA · 2026</div>
+    </div>
+
+    <h1>Interfaz de <span class="gradient-text">Acceso al Proyecto de Chino Nivel 1</span></h1>
+    <p class="subtitle">
+      Comparativa de landing pages generadas por dos agentes de IA distintos a partir del mismo prompt. Seleccioná un acceso para explorar.
+    </p>
+
+    <!-- Los 3 links principales -->
+    <div class="cards">
+
+      <!-- Link 1: Prompt -->
+      <a href="prompt.html" target="_blank" class="card card-1">
+        <div class="card-num num-blue">01</div>
+        <div class="card-body">
+          <div class="card-label lbl-blue">Documento de texto</div>
+          <div class="card-title">Prompt utilizado</div>
+          <div class="card-desc">El texto exacto enviado a ambos agentes como instrucción inicial</div>
+        </div>
+      </a>
+
+      <!-- Link 2: Agente 1 -->
+      <a href="landing1.html" target="_blank" class="card card-2">
+        <div class="card-num num-red">02</div>
+        <div class="card-body">
+          <div class="card-label lbl-red">Agente 1 · Codex (OpenAI)</div>
+          <div class="card-title">Landing Page — Pinyin Start (Versión A)</div>
+          <div class="card-desc">Generada con Codex a partir del prompt indicado</div>
+        </div>
+      </a>
+
+      <!-- Link 3: Agente 2 -->
+      <a href="landing2.html" target="_blank" class="card card-3">
+        <div class="card-num num-gold">03</div>
+        <div class="card-body">
+          <div class="card-label lbl-gold">Agente 2 · Cursor</div>
+          <div class="card-title">Landing Page — Pinyin Start (Versión B)</div>
+          <div class="card-desc">Generada con Cursor a partir del mismo prompt</div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Prompt completo embebido -->
+    <div class="divider"><span>Prompt exacto utilizado</span></div>
+
+    <div class="prompt-box">
+      <h2>Prompt</h2>
+      <div class="prompt-text">Eres un experto en diseño web y desarrollo frontend. Crea una landing page completa y moderna en HTML, CSS y JavaScript para una plataforma educativa llamada "Pinyin Start" que enseña chino mandarín desde cero a hispanohablantes.
+
+La página debe incluir:
+
+1. **Header fijo** con logo (carácter 拼), navegación con links a las secciones (#inicio, #pinyin, #caracteres, #pronunciacion, #contacto) y un botón CTA "Comenzar Gratis".
+
+2. **Sección Hero** con: título principal "Aprende chino mandarín desde cero", subtítulo descriptivo, dos botones (primario y secundario), estadísticas (12.000 estudiantes, 200+ lecciones, 100% gratuito), y una ilustración visual con caracteres chinos flotantes animados.
+
+3. **Sección Sobre Nosotros** con texto descriptivo de la plataforma y una grilla de 5 tarjetas de características (aprendizaje desde cero, método visual, pronunciación correcta, caracteres básicos, ejercicios prácticos).
+
+4. **Sección Características/Pinyin** con 6 tarjetas de features: Pinyin, Tonos, Pronunciación, Caracteres chinos, Vocabulario básico, Conversaciones cotidianas.
+
+5. **Sección Interactiva** con:
+   - Widget de pronunciación: botones con caracteres 你好, 谢谢, 再见 que al hacer clic muestran pinyin y traducción.
+   - Flashcards 3D con flip animation: mínimo 6 tarjetas con caracteres chinos, al clickear muestran pinyin y traducción.
+
+6. **Sección Testimonios** en formato bento grid con 3 testimonios de estudiantes y una estadística destacada (98% satisfacción).
+
+7. **Sección Contacto** con información de contacto y formulario con campos: nombre, email, nivel actual (select) y mensaje. Validación y mensaje de éxito al enviar.
+
+8. **Footer** con logo, descripción, redes sociales, y columnas de links (Recursos, Cursos, Legal).
+
+**Diseño visual**: Paleta oscura (fondo #070b14), rojo chino (#e63946), dorado (#d4a853), azul (#3b82f6). Tipografía: Inter + Plus Jakarta Sans. Glassmorphism en tarjetas. Animaciones suaves de entrada (fade-up con IntersectionObserver). Totalmente responsive (mobile-first). Menú hamburguesa funcional en mobile.</div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>PFO2 · Diseño y Programación Web · 2026</p>
+  </footer>
+
+</body>
+</html>

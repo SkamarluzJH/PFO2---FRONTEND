@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pinyin Start | Aprende chino mandarín desde cero</title>
+  <meta name="description" content="Pinyin Start es una plataforma moderna para aprender chino mandarín desde cero." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <style>
+:root {
+  color-scheme: dark;
+  --line: rgba(255, 255, 255, 0.12);
+  --muted: #a7b2c5;
+  --gold: #f8c76b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 14% 8%, rgba(239, 68, 68, 0.16), transparent 29rem),
+    radial-gradient(circle at 80% 8%, rgba(56, 189, 248, 0.16), transparent 28rem),
+    linear-gradient(135deg, #050b14 0%, #081527 48%, #030711 100%);
+  color: #f8fafc;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(to bottom, black, transparent 75%);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.font-display {
+  font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+}
+
+.logo-mark {
+  display: inline-grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  border: 1px solid rgba(248, 199, 107, 0.4);
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #ef4444, #f8c76b);
+  box-shadow: 0 18px 45px rgba(239, 68, 68, 0.25);
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+
+/* ── NAV ── */
+.nav-menu {
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  right: 1.25rem;
+  left: 1.25rem;
+  display: none;
+  flex-direction: column;
+  gap: 0.25rem;
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  background: rgba(7, 17, 31, 0.94);
+  padding: 0.75rem;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(20px);
+}
+
+.nav-menu.open {
+  display: flex;
+}
+
+.nav-menu a {
+  border-radius: 0.9rem;
+  padding: 0.85rem 1rem;
+  color: #d5deeb;
+  font-size: 0.92rem;
+  font-weight: 700;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.nav-menu a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.nav-toggle {
+  display: inline-flex;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.32rem;
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  width: 1.1rem;
+  height: 2px;
+  border-radius: 999px;
+  background: #fff;
+}
+
+/* ── HERO ── */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  padding: 0.45rem 0.85rem;
+  color: #ffe3a3;
+  font-size: 0.78rem;
+  font-weight: 800;
+  backdrop-filter: blur(18px);
+}
+
+.section-kicker {
+  display: block;
+  margin-bottom: 1rem;
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── BUTTONS ── */
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  min-height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.9rem 1.75rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: linear-gradient(135deg, #ef4444, #c1121f 48%, #f8c76b);
+  color: #fff;
+  box-shadow: 0 18px 50px rgba(239, 68, 68, 0.32);
+}
+
+.btn-secondary {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  color: #eff6ff;
+  backdrop-filter: blur(18px);
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 60px rgba(239, 68, 68, 0.38);
+}
+
+/* ── HERO ILLUSTRATION ── */
+.hero-illustration {
+  position: relative;
+  min-height: 36rem;
+}
+
+.learning-core {
+  position: relative;
+  height: 36rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 2rem;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.04)),
+    radial-gradient(circle at 50% 35%, rgba(56, 189, 248, 0.18), transparent 16rem);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 30px 90px rgba(0, 0, 0, 0.38);
+  overflow: hidden;
+  backdrop-filter: blur(24px);
+}
+
+.learning-core::before {
+  position: absolute;
+  inset: 1.1rem;
+  border: 1px dashed rgba(255, 255, 255, 0.14);
+  border-radius: 1.5rem;
+  content: "";
+  pointer-events: none;
+}
+
+.core-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18rem;
+  height: 18rem;
+  border: 1px solid rgba(248, 199, 107, 0.34);
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  animation: pulseRing 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.core-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: 10.5rem;
+  height: 10.5rem;
+  place-items: center;
+  border-radius: 1.8rem;
+  background: linear-gradient(145deg, rgba(239, 68, 68, 0.94), rgba(11, 27, 50, 0.84));
+  box-shadow: 0 24px 70px rgba(239, 68, 68, 0.35);
+  transform: translate(-50%, -50%) rotate(-4deg);
+}
+
+.main-symbol {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.main-symbol span {
+  font-size: 4.8rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.main-symbol small {
+  display: block;
+  margin-top: 0.25rem;
+  color: #ffe3a3;
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.floating-card {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 1.25rem;
+  background: rgba(5, 11, 20, 0.72);
+  padding: 0.9rem 1rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(18px);
+  animation: floatY 5s ease-in-out infinite;
+}
+
+.floating-card .hanzi {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  flex-shrink: 0;
+  place-items: center;
+  border-radius: 0.9rem;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+
+.floating-card div strong {
+  display: block;
+  font-size: 0.95rem;
+  color: #ffe3a3;
+}
+
+.floating-card div p {
+  margin: 0.15rem 0 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.card-one {
+  top: 4.5rem;
+  left: 2rem;
+  animation-delay: 0s;
+}
+
+.card-two {
+  right: 2rem;
+  bottom: 7rem;
+  animation-delay: 1.5s;
+}
+
+.card-three {
+  top: 7rem;
+  right: 2.6rem;
+  animation-delay: 0.8s;
+}
+
+.tone-board {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  display: grid;
+  width: min(82%, 23rem);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.65rem;
+  transform: translateX(-50%);
+}
+
+.tone-board span {
+  display: grid;
+  min-height: 3.35rem;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffe3a3;
+  font-size: 1.35rem;
+  font-weight: 900;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.orb-red {
+  right: -2rem;
+  top: 5rem;
+  width: 7rem;
+  height: 7rem;
+  background: rgba(239, 68, 68, 0.42);
+}
+
+.orb-gold {
+  bottom: 4rem;
+  left: -2rem;
+  width: 6rem;
+  height: 6rem;
+  background: rgba(248, 199, 107, 0.3);
+}
+
+/* ── SECTIONS ── */
+.section-pad {
+  padding: 5.5rem 0;
+}
+
+.bg-layer {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015));
+}
+
+.section-title {
+  margin: 0;
+  color: #fff;
+  font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+  font-size: clamp(2.1rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.section-copy {
+  margin: 1.2rem 0 0;
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.8;
+}
+
+/* ── ABOUT ── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.about-item {
+  border: 1px solid var(--line);
+  border-radius: 1.4rem;
+  padding: 1.35rem;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.045));
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.12), 0 20px 70px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(20px);
+}
+
+.about-item span {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--gold);
+  font-weight: 900;
+  font-size: 0.85rem;
+}
+
+.about-item h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.about-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* ── FEATURES ── */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+  gap: 1rem;
+}
+
+.feature-card {
+  border: 1px solid var(--line);
+  border-radius: 1.4rem;
+  padding: 1.35rem;
+  min-height: 15rem;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.045));
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.12), 0 20px 70px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(20px);
+  transition: border-color 0.22s ease, transform 0.22s ease;
+}
+
+.feature-card:hover {
+  border-color: rgba(248, 199, 107, 0.36);
+  transform: translateY(-7px);
+}
+
+.feature-card h3 {
+  margin: 0.75rem 0 0.4rem;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.feature-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.feature-icon {
+  display: grid;
+  width: 3.35rem;
+  height: 3.35rem;
+  place-items: center;
+  border-radius: 1rem;
+  background: rgba(248, 199, 107, 0.1);
+  color: #ffe3a3;
+  font-size: 1.55rem;
+  font-weight: 900;
+}
+
+/* ── INTERACTIVE ── */
+.interactive-panel {
+  border: 1px solid var(--line);
+  border-radius: 1.7rem;
+  padding: 1rem;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.045));
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.12), 0 20px 70px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(20px);
+}
+
+.pronunciation-widget {
+  border-radius: 1.25rem;
+  background: rgba(5, 11, 20, 0.55);
+  padding: 1rem;
+}
+
+.widget-header {
+  margin-bottom: 1rem;
+}
+
+.widget-header h3 {
+  margin: 0 0 0.2rem;
+  font-weight: 900;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.widget-header span {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.word-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+}
+
+.word-button {
+  min-height: 3.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.3rem;
+  font-weight: 900;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+
+.word-button:hover,
+.word-button.active {
+  border-color: rgba(248, 199, 107, 0.55);
+  background: rgba(239, 68, 68, 0.24);
+}
+
+.result-card {
+  display: grid;
+  min-height: 13rem;
+  margin-top: 1rem;
+  place-items: center;
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  text-align: center;
+  gap: 0.25rem;
+}
+
+.result-card span {
+  font-size: 4.25rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.result-card strong {
+  color: #ffe3a3;
+  font-size: 1.35rem;
+}
+
+.result-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ── FLASHCARDS ── */
+.flashcards-wrap {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.flashcard {
+  height: 10rem;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flashcard-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.flashcard.flipped .flashcard-inner {
+  transform: rotateY(180deg);
+}
+
+.flashcard-face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 1.2rem;
+}
+
+.flashcard-front {
+  background: linear-gradient(145deg, rgba(239, 68, 68, 0.42), rgba(56, 189, 248, 0.12));
+  font-size: 3rem;
+  font-weight: 900;
+}
+
+.flashcard-back {
+  background: linear-gradient(145deg, rgba(248, 199, 107, 0.28), rgba(5, 11, 20, 0.88));
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  text-align: center;
+}
+
+.flashcard-back strong {
+  font-size: 1.4rem;
+  color: #ffe3a3;
+}
+
+.flashcard-back span {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ── TESTIMONIALS ── */
+.testimonial-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.testimonial-card {
+  border: 1px solid var(--line);
+  border-radius: 1.4rem;
+  padding: 1.5rem;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.045));
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.12), 0 20px 70px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(20px);
+}
+
+.testimonial-card h3 {
+  margin: 0.75rem 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.testimonial-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.testimonial-card.accent {
+  border-color: rgba(248, 199, 107, 0.3);
+  background: linear-gradient(145deg, rgba(248, 199, 107, 0.12), rgba(239, 68, 68, 0.06));
+}
+
+.avatar {
+  display: grid;
+  width: 3.5rem;
+  height: 3.5rem;
+  place-items: center;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ef4444, #f8c76b);
+  font-weight: 900;
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+.stars {
+  margin-top: 1rem;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  font-size: 0.9rem;
+}
+
+/* ── CONTACT FORM ── */
+.contact-form {
+  display: grid;
+  gap: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 1.5rem;
+  padding: 1.75rem;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.045));
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.12), 0 20px 70px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(20px);
+}
+
+.contact-form label {
+  display: grid;
+  gap: 0.5rem;
+  color: #dbeafe;
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 1rem;
+  background: rgba(5, 11, 20, 0.66);
+  padding: 0.95rem 1rem;
+  color: #fff;
+  font: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  border-color: rgba(248, 199, 107, 0.55);
+  box-shadow: 0 0 0 3px rgba(248, 199, 107, 0.12);
+}
+
+.contact-form select option {
+  background: #0d1f38;
+  color: #fff;
+}
+
+/* ── FOOTER ── */
+footer a {
+  display: block;
+  margin-top: 0.75rem;
+  color: #9aa8bc;
+  font-size: 0.9rem;
+  transition: color 0.15s ease;
+}
+
+footer a:hover {
+  color: #fff;
+}
+
+.footer-title {
+  margin: 0 0 0.85rem;
+  font-weight: 900;
+  font-size: 0.88rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes pulseRing {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.75; }
+  50% { transform: translate(-50%, -50%) scale(1.06); opacity: 1; }
+}
+
+/* ── RESPONSIVE ── */
+@media (min-width: 640px) {
+  .about-grid { grid-template-columns: repeat(2, 1fr); }
+  .flashcards-wrap { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 768px) {
+  .nav-menu {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.35rem;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .testimonial-grid {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+
+  .testimonial-card.large {
+    grid-row: span 2;
+    min-height: 22rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-pad {
+    padding: 7rem 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero-illustration {
+    min-height: 30rem;
+  }
+
+  .learning-core {
+    height: 30rem;
+  }
+
+  .core-card {
+    width: 8.6rem;
+    height: 8.6rem;
+  }
+
+  .main-symbol span {
+    font-size: 3.8rem;
+  }
+
+  .word-buttons {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-card,
+  .core-ring {
+    animation: none;
+  }
+
+  .flashcard-inner {
+    transition: none;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <header class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#07111f]/70 backdrop-blur-xl">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+      <a href="#inicio" class="flex items-center gap-3">
+        <span class="logo-mark">拼</span>
+        <span class="font-display text-lg font-extrabold text-white">Pinyin Start</span>
+      </a>
+      <button id="menuButton" class="nav-toggle md:hidden" type="button" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <div id="navMenu" class="nav-menu">
+        <a href="#inicio">Inicio</a>
+        <a href="#pinyin">Pinyin</a>
+        <a href="#caracteres">Caracteres</a>
+        <a href="#pronunciacion">Pronunciación</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <a href="#contacto" class="hidden rounded-full bg-red-500 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-red-500/25 transition hover:-translate-y-0.5 hover:bg-red-400 md:inline-flex">Comenzar Gratis</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero-section">
+      <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 pb-20 pt-32 lg:grid-cols-[1.02fr_.98fr] lg:px-8 lg:pb-28 lg:pt-40">
+        <div class="relative z-10">
+          <div class="eyebrow mb-6"><span class="h-2 w-2 rounded-full bg-amber-300"></span>Mandarín claro, visual e interactivo</div>
+          <h1 class="font-display text-5xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">Aprende chino mandarín desde cero</h1>
+          <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-300">Domina el pinyin, reconoce caracteres esenciales y practica pronunciación real con una experiencia diseñada para principiantes absolutos.</p>
+          <div class="mt-9 flex flex-col gap-4 sm:flex-row">
+            <a href="#pronunciacion" class="btn-primary">Comenzar Gratis</a>
+            <a href="#pinyin" class="btn-secondary">Explorar método</a>
+          </div>
+        </div>
+
+        <div class="hero-illustration">
+          <div class="orb orb-red"></div>
+          <div class="orb orb-gold"></div>
+          <div class="learning-core">
+            <div class="core-ring"></div>
+            <div class="core-card main-symbol"><span>学</span><small>xué</small></div>
+            <div class="floating-card card-one"><span class="hanzi">你</span><div><strong>nǐ</strong><p>Tono 3</p></div></div>
+            <div class="floating-card card-two"><span class="hanzi">好</span><div><strong>hǎo</strong><p>Hola</p></div></div>
+            <div class="floating-card card-three"><span class="hanzi">谢</span><div><strong>xiè</strong><p>Gracias</p></div></div>
+            <div class="tone-board"><span>ā</span><span>á</span><span>ǎ</span><span>à</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pinyin" class="section-pad">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
+          <div>
+            <span class="section-kicker">Sobre Nosotros</span>
+            <h2 class="section-title">Una forma simple y visual de entrar al mandarín.</h2>
+            <p class="section-copy">Pinyin Start guía a estudiantes principiantes desde los sonidos más básicos hasta sus primeras conversaciones. El método combina memoria visual, escucha activa, práctica guiada y caracteres esenciales.</p>
+          </div>
+          <div class="about-grid">
+            <div class="about-item"><span>01</span><h3>Aprendizaje desde cero</h3><p>Lecciones progresivas para comenzar sin conocimientos previos.</p></div>
+            <div class="about-item"><span>02</span><h3>Método visual</h3><p>Asociaciones claras entre sonido, tono, significado y carácter.</p></div>
+            <div class="about-item"><span>03</span><h3>Pronunciación correcta</h3><p>Práctica enfocada en tonos, ritmo y sonidos esenciales.</p></div>
+            <div class="about-item"><span>04</span><h3>Ejercicios prácticos</h3><p>Flashcards, repaso activo y vocabulario aplicable.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="caracteres" class="section-pad bg-layer">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="mx-auto max-w-3xl text-center">
+          <span class="section-kicker">Características Principales</span>
+          <h2 class="section-title">Todo lo esencial para empezar con confianza.</h2>
+        </div>
+        <div class="feature-grid mt-12">
+          <article class="feature-card"><div class="feature-icon">拼</div><h3>Pinyin</h3><p>Aprende a leer sonidos chinos con una guía fonética clara.</p></article>
+          <article class="feature-card"><div class="feature-icon">ˇ</div><h3>Tonos</h3><p>Practica los cuatro tonos principales con ejemplos comparables.</p></article>
+          <article class="feature-card"><div class="feature-icon">声</div><h3>Pronunciación</h3><p>Entrena sonidos iniciales, finales y ritmo natural.</p></article>
+          <article class="feature-card"><div class="feature-icon">字</div><h3>Caracteres chinos</h3><p>Reconoce trazos, significados y caracteres frecuentes.</p></article>
+          <article class="feature-card"><div class="feature-icon">词</div><h3>Vocabulario básico</h3><p>Construye una base útil para saludar y presentarte.</p></article>
+          <article class="feature-card"><div class="feature-icon">话</div><h3>Conversaciones cotidianas</h3><p>Practica frases simples para situaciones reales.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pronunciacion" class="section-pad">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="grid gap-8 lg:grid-cols-[.9fr_1.1fr]">
+          <div>
+            <span class="section-kicker">Sección Interactiva</span>
+            <h2 class="section-title">Escucha, asocia y recuerda.</h2>
+            <p class="section-copy">Selecciona palabras frecuentes para descubrir su pinyin y significado. Luego gira las tarjetas para reforzar memoria visual.</p>
+          </div>
+          <div class="interactive-panel">
+            <div class="pronunciation-widget">
+              <div class="widget-header"><h3>Widget de Pronunciación</h3><span>Click para practicar</span></div>
+              <div class="word-buttons">
+                <button class="word-button active" type="button" data-character="你好" data-pinyin="Nǐ hǎo" data-translation="Hola">你好</button>
+                <button class="word-button" type="button" data-character="谢谢" data-pinyin="Xiè xie" data-translation="Gracias">谢谢</button>
+                <button class="word-button" type="button" data-character="再见" data-pinyin="Zài jiàn" data-translation="Adiós">再见</button>
+              </div>
+              <div class="result-card">
+                <span id="resultCharacter">你好</span>
+                <strong id="resultPinyin">Nǐ hǎo</strong>
+                <p id="resultTranslation">Hola</p>
+              </div>
+            </div>
+
+            <div class="flashcards-wrap">
+              <div class="flashcard"><div class="flashcard-inner"><div class="flashcard-face flashcard-front">你好</div><div class="flashcard-face flashcard-back"><strong>Nǐ hǎo</strong><span>Hola</span></div></div></div>
+              <div class="flashcard"><div class="flashcard-inner"><div class="flashcard-face flashcard-front">谢谢</div><div class="flashcard-face flashcard-back"><strong>Xiè xie</strong><span>Gracias</span></div></div></div>
+              <div class="flashcard"><div class="flashcard-inner"><div class="flashcard-face flashcard-front">再见</div><div class="flashcard-face flashcard-back"><strong>Zài jiàn</strong><span>Adiós</span></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad bg-layer">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="mx-auto max-w-3xl text-center">
+          <span class="section-kicker">Testimonios</span>
+          <h2 class="section-title">Estudiantes que empezaron desde cero.</h2>
+        </div>
+        <div class="testimonial-grid mt-12">
+          <article class="testimonial-card large"><div class="avatar">ML</div><h3>Martina López</h3><p>“Por fin entendí los tonos sin sentirme perdida. Las tarjetas visuales hacen que practicar sea mucho más fácil.”</p><div class="stars">★★★★★</div></article>
+          <article class="testimonial-card"><div class="avatar">DR</div><h3>Diego Ramos</h3><p>“Empecé sin saber nada y en una semana ya podía leer saludos básicos en pinyin.”</p><div class="stars">★★★★★</div></article>
+          <article class="testimonial-card accent"><div class="avatar">AS</div><h3>Ana Silva</h3><p>“La estética es limpia y el contenido va al punto. Ideal para estudiar todos los días.”</p><div class="stars">★★★★★</div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="section-pad">
+      <div class="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-[.95fr_1.05fr] lg:px-8">
+        <div>
+          <span class="section-kicker">Contacto</span>
+          <h2 class="section-title">Empieza tu ruta de mandarín hoy.</h2>
+          <p class="section-copy">Cuéntanos tu nivel actual y te enviaremos una recomendación para iniciar.</p>
+        </div>
+        <form class="contact-form">
+          <label>Nombre<input type="text" name="nombre" placeholder="Tu nombre" required minlength="2" /></label>
+          <label>Correo electrónico<input type="email" name="email" placeholder="tu@email.com" required /></label>
+          <label>Nivel actual<select name="nivel" required><option value="">Selecciona tu nivel</option><option>Empiezo desde cero</option><option>Sé algunas palabras</option><option>Conozco algo de pinyin</option></select></label>
+          <label>Mensaje<textarea name="mensaje" rows="5" placeholder="Quiero aprender mandarín para..." required minlength="10"></textarea></label>
+          <button type="submit" class="btn-primary w-full">Enviar mensaje</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/10 bg-[#050b14]">
+    <div class="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
+      <div><div class="mb-4 flex items-center gap-3"><span class="logo-mark">拼</span><span class="font-display text-lg font-extrabold text-white">Pinyin Start</span></div><p class="text-sm leading-6 text-slate-400">Aprendizaje moderno de chino mandarín para principiantes.</p></div>
+      <div><h3 class="footer-title">Redes sociales</h3><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">TikTok</a></div>
+      <div><h3 class="footer-title">Recursos</h3><a href="#pinyin">Curso de Pinyin</a><a href="#caracteres">Curso de Caracteres</a><a href="#pronunciacion">Curso de Pronunciación</a></div>
+      <div><h3 class="footer-title">Cursos</h3><a href="#pinyin">Curso de Pinyin</a><a href="#caracteres">Curso de Caracteres</a><a href="#pronunciacion">Curso de Pronunciación</a></div>
+    </div>
+    <div class="border-t border-white/10 px-5 py-5 text-center text-sm text-slate-500">© Pinyin Start 2026</div>
+  </footer>
+
+  <script>
+    const menuButton = document.getElementById('menuButton');
+    const navMenu = document.getElementById('navMenu');
+
+    menuButton.addEventListener('click', () => navMenu.classList.toggle('open'));
+
+    document.querySelectorAll('#navMenu a').forEach(link => {
+      link.addEventListener('click', () => navMenu.classList.remove('open'));
+    });
+
+    const wordButtons = document.querySelectorAll('.word-button');
+    const resultCharacter = document.getElementById('resultCharacter');
+    const resultPinyin = document.getElementById('resultPinyin');
+    const resultTranslation = document.getElementById('resultTranslation');
+
+    wordButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        wordButtons.forEach(item => item.classList.remove('active'));
+        button.classList.add('active');
+        resultCharacter.textContent = button.dataset.character;
+        resultPinyin.textContent = button.dataset.pinyin;
+        resultTranslation.textContent = button.dataset.translation;
+      });
+    });
+
+    document.querySelectorAll('.flashcard').forEach(card => {
+      card.addEventListener('click', () => card.classList.toggle('flipped'));
+    });
+  </script>
+</body>
+</html>
